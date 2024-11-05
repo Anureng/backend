@@ -1,12 +1,16 @@
 {
   "name": "backend_mern_anurag",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.9",
+  "description": "CLI tool to create a basic Node.js TypeScript setup",
   "main": "dist/app.js",
+  "bin": {
+    "backend_mern_anurag": "./index.js"
+  },
   "scripts": {
     "start": "tsc && node dist/app.js",
     "lint": "eslint . --ext .ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node ./index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +23,6 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "backend_mern_anurag": "^1.0.1",
     "express": "^4.17.1"
   }
 }
