@@ -41,10 +41,10 @@ const main = () => {
   }
 
   // Create server.ts
-  const serverContentPath = path.join(__dirname, 'templates', 'server.ts');
+  const serverContentPath = path.join(__dirname, 'templates', 'app.ts');
   if (fs.existsSync(serverContentPath)) {
     const serverContent = fs.readFileSync(serverContentPath, 'utf-8');
-    createFile(path.join(srcDir, 'server.ts'), serverContent);
+    createFile(path.join(srcDir, 'app.ts'), serverContent);
   } else {
     console.error('Template server.ts not found!');
   }
