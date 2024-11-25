@@ -1,19 +1,21 @@
 {
   "name": "backend_mern_anurag",
-  "version": "1.8.9",
+  "version": "2.0.0",
   "description": "CLI tool to create a basic Node.js TypeScript setup",
   "main": "dist/app.js",
   "bin": {
     "backend_mern_anurag": "./index.js"
   },
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/index.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "node ./index.js"
   },
   "files": [
-    "templates/"
+    "templates/",
+    "src/",
+    "index.js"
   ],
   "keywords": [],
   "author": "",
