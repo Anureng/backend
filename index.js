@@ -8,6 +8,15 @@ const createFile = (filePath, content) => {
   fs.writeFileSync(filePath, content, { encoding: 'utf8' });
 };
 
+// Function to read a template file
+const readTemplate = (templatePath) => {
+  if (fs.existsSync(templatePath)) {
+    return fs.readFileSync(templatePath, 'utf8');
+  } else {
+    throw new Error(`Template file not found at: ${templatePath}`);
+  }
+};
+
 // Main function
 const main = () => {
   const currentDir = process.cwd();
@@ -22,34 +31,26 @@ const main = () => {
     console.log('src directory already exists.');
   }
 
-  // Create package.json
-  const packageJsonPath = path.join(__dirname, 'templates', 'package.json');
-  if (fs.existsSync(packageJsonPath)) {
-    const packageJson = require(packageJsonPath);
-    createFile(path.join(currentDir, 'package.json'), JSON.stringify(packageJson, null, 2));
-  } else {
-    console.error('Template package.json not found!');
-  }
+  // Paths to the templates directory
+  const templatesDir = path.join(__dirname, 'templates');
 
-  // Create tsconfig.json
-  const tsConfigPath = path.join(__dirname, 'templates', 'tsconfig.json');
-  if (fs.existsSync(tsConfigPath)) {
-    const tsConfig = require(tsConfigPath);
-    createFile(path.join(currentDir, 'tsconfig.json'), JSON.stringify(tsConfig, null, 2));
-  } else {
-    console.error('Template tsconfig.json not found!');
-  }
+  try {
+    // Create package.json
+    const packageJsonContent = readTemplate(path.join(templatesDir, 'package.json'));
+    createFile(path.join(currentDir, 'package.json'), packageJsonContent);
 
-  // Create server.ts
-  const serverContentPath = path.join(__dirname, 'templates', 'app.ts');
-  if (fs.existsSync(serverContentPath)) {
-    const serverContent = fs.readFileSync(serverContentPath, 'utf-8');
-    createFile(path.join(srcDir, 'app.ts'), serverContent);
-  } else {
-    console.error('Template server.ts not found!');
-  }
+    // Create tsconfig.json
+    const tsConfigContent = readTemplate(path.join(templatesDir, 'tsconfig.json'));
+    createFile(path.join(currentDir, 'tsconfig.json'), tsConfigContent);
 
-  console.log('Basic Node.js TypeScript setup created successfully!');
+    // Create app.ts
+    const appContent = readTemplate(path.join(templatesDir, 'app.ts'));
+    createFile(path.join(srcDir, 'app.ts'), appContent);
+
+    console.log('Basic Node.js TypeScript setup created successfully!');
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+  }
 };
 
 // Execute main function
