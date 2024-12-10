@@ -1,6 +1,6 @@
 {
   "name": "backend_mern_anurag",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "CLI tool to create a basic Node.js TypeScript setup",
   "main": "dist/app.js",
   "bin": {

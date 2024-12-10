@@ -4,8 +4,8 @@
   "description": "A new Node.js TypeScript project",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/server.js",
-    "dev": "nodemon --watch ./src --exec \"ts-node src/server.ts\"",
+    "start": "tsc && node dist/app.js",
+    "dev": "nodemon --watch ./src --ext ts --exec ts-node src/app.ts",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
